@@ -1,0 +1,393 @@
+/* --- 1. Global Styles & Typography --- */
+body {
+  margin: 0;
+  /* Use the "San Francisco" font stack for the authentic Apple feel */
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI',
+    'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fff; /* Default background is white */
+  color: #1d1d1f; /* Default text is almost-black */
+}
+
+/* --- 2. The Sticky "Glass" Header --- */
+.App-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+  /* The Glassmorphism Effect */
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+.header-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex; /* Aligns items horizontally */
+  align-items: center;
+}
+
+.header-content h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* --- 3. Full-Width Page Sections --- */
+.App-main {
+  /* This just holds the sections */
+  width: 100%;
+}
+
+.feature-section {
+  width: 100%;
+  /* Lots of vertical padding for that spacious "Apple" feel */
+  padding: 6rem 0;
+  overflow: hidden; /* Important for animations */
+}
+
+/* Alternating Themes */
+.feature-section.light {
+  background-color: #fff;
+  color: #1d1d1f;
+}
+
+.feature-section.dark {
+  background-color: #000;
+  color: #f5f5f7;
+}
+
+/* --- 4. The 2-Column Component Layout --- */
+.feature-container {
+  /* This is the 2-column grid */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start; /* Align items to the top */
+
+  /* This centers the grid on the page */
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* On mobile, stack the columns */
+@media (max-width: 768px) {
+  .feature-section {
+    padding: 4rem 0;
+  }
+  .feature-container {
+    grid-template-columns: 1fr;
+    gap: 2rem; /* Reduce gap on mobile */
+  }
+  /* Stack text above form on mobile */
+  .feature-text {
+     margin-bottom: 2rem;
+  }
+}
+
+/* --- 5. Component Content Styling --- */
+
+/* The left column (Text) */
+.feature-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center if needed, or remove for top alignment */
+  padding-top: 1rem; /* Add some padding if align-items is start */
+}
+
+.feature-text h2 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+@media (max-width: 768px) {
+    .feature-text h2 {
+        font-size: 2.5rem; /* Slightly smaller title on mobile */
+    }
+}
+
+.feature-text p {
+  font-size: 1.25rem;
+  color: #86868b; /* Apple's gray text color */
+  line-height: 1.5;
+}
+
+.dark .feature-text p {
+  color: #a1a1a6; /* Lighter gray for dark backgrounds */
+}
+
+/* The right column (Form) */
+.feature-form-area {
+  background-color: #f5f5f7;
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+}
+
+.dark .feature-form-area {
+  background-color: #1c1c1e; /* Apple's dark card color */
+}
+
+/* --- 6. Form Element Styling (Light & Dark) --- */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+.dark .form-group label {
+  color: #ccc;
+}
+
+/* Text Input */
+input[type='text'],
+textarea /* Style textareas similarly */ {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d2d2d7;
+  border-radius: 0.75rem;
+  background-color: #fff;
+  box-sizing: border-box;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+textarea {
+  min-height: 80px; /* Give textareas some default height */
+  resize: vertical; /* Allow vertical resize */
+}
+
+
+.dark input[type='text'],
+.dark textarea {
+  background-color: #333;
+  border-color: #555;
+  color: #fff;
+}
+
+input[type='text']:focus,
+textarea:focus {
+  outline: none;
+  border-color: #0071e3;
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.2);
+}
+.dark input[type='text']:focus,
+.dark textarea:focus {
+   border-color: #0A84FF;
+   box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.3);
+}
+
+
+/* File Input */
+input[type='file']::file-selector-button {
+  font-family: inherit;
+  font-weight: 600;
+  color: #0071e3;
+  background-color: rgba(0, 113, 227, 0.08);
+  border: 1px solid rgba(0, 113, 227, 0.2);
+  padding: 0.6rem 1rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  margin-right: 1rem;
+  transition: background-color 0.2s ease;
+}
+
+input[type='file']::file-selector-button:hover {
+  background-color: rgba(0, 113, 227, 0.15);
+}
+
+.dark input[type='file']::file-selector-button {
+  color: #007aff;
+  background-color: rgba(0, 122, 255, 0.15);
+  border: 1px solid rgba(0, 122, 255, 0.3);
+}
+.dark input[type='file']::file-selector-button:hover {
+  background-color: rgba(0, 122, 255, 0.25);
+}
+
+/* --- 7. Button, Results, and Footer --- */
+button {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #0071e3;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+button:hover {
+  background-color: #0077ed;
+}
+button:active {
+  transform: scale(0.98);
+}
+button:disabled {
+  background-color: #adcdeb;
+  cursor: not-allowed;
+}
+
+.dark button {
+    /* Optional dark mode adjustments */
+    /* background-color: #0A84FF; */
+}
+.dark button:hover {
+    /* background-color: #1d8fff; */
+}
+.dark button:disabled {
+    background-color: #4a6a8a;
+}
+
+
+.loading {
+  font-style: italic;
+  color: #86868b;
+  margin-top: 1rem;
+}
+.dark .loading {
+  color: #a1a1a6;
+}
+
+.error {
+  color: #d9534f;
+  background-color: #fdf2f2;
+  border: 1px solid #f0cccc;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  margin-top: 1rem;
+}
+.dark .error {
+  background-color: #4a2727;
+  border-color: #7a3e3e;
+  color: #ffcccc;
+}
+
+.result-box {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background-color: #fff; /* White background for light mode result box */
+  border: 1px solid #e0e0e0;
+  border-radius: 1rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: inherit; /* Use default font unless specific like pre */
+}
+.result-box pre {
+   font-family: 'SF Mono', Menlo, Consolas, 'Courier New', monospace; /* Monospace for transcriptions */
+   font-size: 0.9rem;
+}
+
+.dark .result-box {
+  background-color: #333; /* Darker grey background for dark mode results */
+  border-color: #444;
+}
+
+/* Specific to Simplify Report results */
+.simplify-result {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+    .simplify-result {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+.simplify-result .result-box {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Styling for Structured Simplify Report */
+.simplified-report-display {
+   border-top: 1px solid rgba(0,0,0,0.1);
+   padding-top: 2rem;
+}
+.dark .simplified-report-display {
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+.simplified-report-display h3 { color: #1d1d1f; }
+.dark .simplified-report-display h3 { color: #f5f5f7; }
+.simplified-report-display h4 { color: #1d1d1f; }
+.dark .simplified-report-display h4 { color: #f5f5f7; }
+
+/* Target motion.div inside report-section specifically for Simplify Report */
+.dark .simplified-report-display .report-section > div[style*="border-left"] {
+    border-left-color: #0A84FF;
+}
+.dark .simplified-report-display p { color: #ccc; }
+.dark .simplified-report-display span { color: #999; }
+.dark .simplified-report-display strong { color: #eee; }
+
+/* Chat History styling */
+.dark .chat-history {
+    background-color: #333;
+    border-color: #444;
+}
+.dark .chat-history p { color: #ddd; }
+.dark .chat-history strong { color: #fff; }
+.dark .chat-history p + p { color: #bbb; }
+
+/* --- Medication Details Box Styling --- */
+.dark .medication-details-box {
+    background-color: #1c1c1e;
+    border-color: #333;
+}
+.dark .medication-details-box h3 { color: #f5f5f7; }
+.dark .medication-details-box h4 { color: #ffffff; }
+.dark .medication-details-box p { color: #a1a1a6; }
+.dark .medication-details-box a { color: #0A84FF; }
+/* Target motion.div inside medication-details-box */
+.dark .medication-details-box > div[style*="border-left"] {
+    border-left-color: #0A84FF !important;
+}
+/* Disclaimer styling override */
+.dark .result-box p[style*="background: #FDF2F2"] {
+    background: #4a2727 !important;
+    border-color: #7a3e3e !important;
+    color: #ffcccc !important;
+}
+.dark .result-box p[style*="background: #FDF2F2"] strong {
+     color: #ffd9d9 !important;
+}
+/* --- END: Medication Details Styling --- */
+
+/* Nutrition Scan Table Styling */
+.dark .result-box table { color: #ccc; }
+.dark .result-box table th { color: #eee; border-bottom-color: #555; }
+.dark .result-box table tr { border-bottom-color: #444; }
+.dark .result-box table td { color: #ccc; }
+.dark .result-box table strong { color: #eee; }
+
+/* Explain Image Disclaimer */
+.dark .result-box p[style*="background: #FDF2F2"][style*="color: #D9534F"] {
+     background: #4a2727 !important;
+     border-color: #7a3e3e !important;
+     color: #ffcccc !important;
+}
+.dark .result-box p[style*="background: #FDF2F2"][style*="color: #D9534F"] strong {
+     color: #ffd9d9 !important;
+}
+
+
+.App-footer {
+  text-align: center;
+  padding: 2rem;
+  background-color: #f5f5f7;
+  font-size: 0.75rem;
+  color: #86868b;
+}
